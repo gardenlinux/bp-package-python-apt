@@ -1,0 +1,27 @@
+diff --git a/debian/rules b/debian/rules
+index df8b3f9..e977bd4 100644
+--- a/debian/rules
++++ b/debian/rules
+@@ -14,11 +14,10 @@ export PYBUILD_NAME=apt
+ BUILDDIR3 := $(shell pybuild --print build_dir --interpreter python3)
+ 
+ %:
+-	dh $@ --with python3,sphinxdoc --buildsystem=pybuild
++	dh $@ --with python3 --buildsystem=pybuild
+ 
+ override_dh_auto_build:
+ 	dh_auto_build
+-	PYTHONPATH=$(BUILDDIR3) sphinx-build doc/source build/sphinx/html
+ 
+ # this is nasty. instead of installing the files to one dir, overriding
+ # common ones, and then us picking out the files we want, we have to move some
+@@ -32,8 +31,7 @@ override_dh_auto_install:
+ 	rmdir debian/python3-apt/usr/share
+ 
+ override_dh_installdocs:
+-	dh_installdocs -p python3-apt --link-doc=python3-apt
+-	dh_installdocs --remaining-packages
++	# do nothing
+ 
+ override_dh_strip:
+ 	dh_strip -p python3-apt

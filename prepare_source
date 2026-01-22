@@ -1,3 +1,9 @@
-version=3.1.0
-version_suffix=gl0~bp1877
-git_src --branch "$version" "https://salsa.debian.org/apt-team/python-apt.git"
+# leaving version_suffix empty to avoid versioning error. 
+# See details here: https://github.com/gardenlinux/bp-package-python-apt/issues/1
+version_suffix="" 
+version_orig="3.1.0"
+version="${version_orig}"
+
+git_src --branch "$version_orig" "https://salsa.debian.org/apt-team/python-apt.git"
+apply_patches
+
